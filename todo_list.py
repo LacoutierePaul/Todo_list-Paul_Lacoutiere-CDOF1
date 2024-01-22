@@ -11,6 +11,12 @@ class Todo:
         self.completed = True
 
 
+def check_choice(num):
+    while num not in ["1", "2", "3", "4", "5", "6"]:
+        print("Please enter a valid choice.")
+        num = input("")
+
+
 if __name__ == "__main__":
     todo_list = []
     index = 1
@@ -25,11 +31,8 @@ if __name__ == "__main__":
         print("6 - Exit")
         print("Please enter your choice:")
 
-        try:
-            choice = int(input())
-        except ValueError:
-            print("Please enter a number")
-            continue
+        choice = input('')
+        check_choice(choice)
 
         if choice == 1:
             print("Please enter your todo to add:")
