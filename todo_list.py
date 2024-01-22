@@ -18,8 +18,28 @@ def check_choice(num):
     return num
 
 
+def load_todos():
+    todos = []
+    with open("todos.txt", "r") as f:
+        for line in f.readlines():
+            line = line.strip()
+            todo = line.split(" - ")
+            todo = Todo(
+                todo[1], int(todo[0]), True if todo[2] == "True" else False
+            )
+            todos.append(todo)
+    return todos
+
+
+def save_todos(todos):
+    with open("todos.txt", "w") as f:
+        for todo in todos:
+            f.write(f"{todo.idx} - {todo.my_todo} - {todo.completed}\n")
+
+
+
 if __name__ == "__main__":
-    todo_list = []
+    todo_list = load_todos()
     index = 1
     while True:
         print("Welcome to your todo list")
@@ -92,6 +112,9 @@ if __name__ == "__main__":
 
         elif choice == "6":
             print("Thanks for using the todo list. Goodbye!")
+            save_todos(todo_list)
             break
         else:
             print("Please enter a valid choice")
+
+
