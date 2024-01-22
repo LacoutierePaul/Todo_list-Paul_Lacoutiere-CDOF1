@@ -11,6 +11,13 @@ class Todo:
         self.completed = True
 
 
+def check_choice(num):
+    while num not in ["1", "2", "3", "4", "5", "6"]:
+        print("Please enter a valid choice.")
+        num = input("")
+    return num
+
+
 if __name__ == "__main__":
     todo_list = []
     index = 1
@@ -25,22 +32,23 @@ if __name__ == "__main__":
         print("6 - Exit")
         print("Please enter your choice:")
 
-        try:
-            choice = int(input())
-        except ValueError:
-            print("Please enter a number")
-            continue
+        choice = input('')
+        choice = check_choice(choice)
 
-        if choice == 1:
+        if choice == "1":
             print("Please enter your todo to add:")
             todo = input()
             my_todo = Todo(todo, index)
             todo_list.append(my_todo)
             index += 1
 
-        elif choice == 2:
+        elif choice == "2":
             print("Please enter the number of the todo to remove:")
-            number = int(input())
+            number = input()
+            while not number.isdigit():
+                print("Please enter a valid number")
+                number = input()
+            number = int(number)
             for todo in todo_list:
                 if todo.idx == number:
                     todo_list.remove(todo)
@@ -48,7 +56,7 @@ if __name__ == "__main__":
             else:
                 print("No todo found with this id")
 
-        elif choice == 3:
+        elif choice == "3":
             if not todo_list:
                 print("No todos found")
             else:
@@ -58,9 +66,13 @@ if __name__ == "__main__":
                     else:
                         print("No uncompleted todos found")
 
-        elif choice == 4:
+        elif choice == "4":
             print("Please enter the number of the completed todo:")
-            number = int(input())
+            number = input()
+            while not number.isdigit():
+                print("Please enter a valid number")
+                number = input()
+            number = int(number)
             for todo in todo_list:
                 if todo.idx == number:
                     todo.change_completed()
@@ -68,7 +80,7 @@ if __name__ == "__main__":
             else:
                 print("No todo found with this id")
 
-        elif choice == 5:
+        elif choice == "5":
             if not todo_list:
                 print("No todos found")
             else:
@@ -78,7 +90,7 @@ if __name__ == "__main__":
                 else:
                     print("No completed todos found")
 
-        elif choice == 6:
+        elif choice == "6":
             print("Thanks for using the todo list. Goodbye!")
             break
         else:
