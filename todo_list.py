@@ -8,7 +8,7 @@ class Todo:
         return f"{self.idx} - {self.my_todo} - Completed : {self.completed}"
 
     def change_completed(self):
-        self.completed = True
+        self.completed = True # Test
 
 
 if __name__ == "__main__":
