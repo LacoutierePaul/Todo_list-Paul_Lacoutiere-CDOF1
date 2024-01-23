@@ -39,7 +39,10 @@ def save_todos(todos):
 
 
 if __name__ == "__main__":
-    todo_list = load_todos()
+    try:
+        todo_list = load_todos()
+    except FileNotFoundError:
+        todo_list = []
     index = 1
     while True:
         print("Welcome to your todo list")
@@ -83,9 +86,6 @@ if __name__ == "__main__":
                 for todo in todo_list:
                     if not todo.completed:
                         print(todo)
-                    else:
-                        print("No uncompleted todos found")
-
         elif choice == "4":
             print("Please enter the number of the completed todo:")
             number = input()
@@ -107,8 +107,6 @@ if __name__ == "__main__":
                 for todo in todo_list:
                     if todo.completed:
                         print(todo)
-                else:
-                    print("No completed todos found")
 
         elif choice == "6":
             print("Thanks for using the todo list. Goodbye!")
